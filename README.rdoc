@@ -1,28 +1,84 @@
-== README
+# Student Homework Tracker
+==========================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tables
 
-Things you may want to cover:
+**Cohort**
+name
+start_date
+end_date
 
-* Ruby version
+**User**(two_user_types)
+first_name
+last_name
+email_address
+password
 
-* System dependencies
+**Enrollment**
+cohort_id
+user_id
 
-* Configuration
+**Assignment**(admin)
+assignment_name
+description
+due_date
+cohort_id
 
-* Database creation
+**Submission**(user)
+github_link
+heroku_link
+user_id (normal)
+status (admin)
+assignment_id
 
-* Database initialization
+**Comment**
+content
+commentable_id
+commentable_type
+user_id
 
-* How to run the test suite
+—————————————
 
-* Services (job queues, cache servers, search engines, etc.)
+## Associations
 
-* Deployment instructions
+**Cohort**
+has_many :users, through: :enrollment 
 
-* ...
+**User**
+had_many :comments
+has_many :assignments
+has_many :submissions
+has_many :cohorts through :enrollment
 
+**Assignment**
+belongs_to :cohort
+has_many :submissions
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+**Submission**
+belongs_to :user
+belongs_to :assignment
+
+**Comments**
+belongs_to commentable, polymorphic: true
+belongs_to :user
+
+—————————————
+
+## Requirements:
+* User authentication
+	* Normal User (students)
+	* Admin User (instructors)
+* Workflow for homework 
+1. New
+2. Reviewing
+3. Complete
+4. Incomplete
+	* checkout the workflow or state machine gems to help control homework "states" 
+	* Homework assignments should be able to have many links
+	* For example: I should be able to add a heroku link, a github link, and whatever else I want to add
+	* check out: http://railscasts.com/episodes/403-dynamic-forms
+	* HW assignment should have a Description attribute
+* Comment Stream
+* Basic styling is fine for this, but you'll definitely want to go back later to make it look nicer because it'll be a great addition to your portfolio :)
+* Deployed on Heroku (use postgres)
+* Master branch on github stays CLEAN AND DEPLOYABLE at all times
