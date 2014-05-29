@@ -1,19 +1,22 @@
 = render '/layouts/navbar'
 
+/ = View All User Records = /
 .top-section
-	.row
-		%table
-			%thead
-				%tr
-					%th First Name
-					%th Last Name
-					%th Email
-					%th Cohort
-					%th Update Info
-			%tbody
-				- @users.each do |user|
-					%tr
-						%td= user.first_name
-						%td= user.last_name
-						%td= user.email
-						%td= link_to "Update", edit_user_path(user.id), :method => :get, class: "button small secondary"
+  .row
+    %table
+      %thead
+        %tr
+          %th First Name
+          %th Last Name
+          %th Email
+          %th Cohort
+          %th Student Profile
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.first_name
+            %td= user.last_name
+            %td= user.email
+            %td **placeholder**
+            %td= link_to "View Profile", user_path(user), :method => :get, class: "button small secondary"
+            
