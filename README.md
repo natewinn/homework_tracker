@@ -4,38 +4,39 @@
 ## Tables
 
 **Cohort**
-name
-start_date
-end_date
+name :string
+start_date :date
+end_date :date
 
 **User**(two_user_types)
-first_name
-last_name
-email_address
-password
+first_name :string
+last_name :sting
+email_address :string
+password :string
 
 **Enrollment**
-cohort_id
-user_id
+cohort_id :integer
+user_id :integer
 
 **Assignment**(admin)
-assignment_name
-description
-due_date
-cohort_id
+name :string
+description :text
+due_date :date
+cohort_id :integer
 
 **Submission**(user)
-github_link
-heroku_link
-user_id (normal)
-status (admin)
-assignment_id
+github :string
+heroku :string
+user_id (normal) :integer
+status (admin) :string
+assignment_id :integer
 
 **Comment**
-content
-commentable_id
-commentable_type
-user_id
+content :text
+commentable_id :integer
+commentable_type :string
+user_id :integer
+(auto) :timestamp
 
 —————————————
 
@@ -61,6 +62,38 @@ belongs_to :assignment
 **Comments**
 belongs_to commentable, polymorphic: true
 belongs_to :user
+
+—————————————
+
+## Stories
+
+**User(student + teacher) registers for class**
+Authorization
+Location/cohort design (data)
+Authentication
+Registration -> association w/class cohort
+
+**User(student) submits submission**
+Input form on specific assignment page
+Authorization
+Submitted and marked ‘new’
+
+**User(teacher) submits assignment**
+Input form
+Authorization
+
+** User(student + teacher) can add comments**
+User(teacher) comments on submission
+* Text form below submission
+* Authorization (teacher and student(who submitted))
+User(student + teacher) comments on assignment
+* Text form below assignment
+* Authorization
+
+**User(teacher) changes status of submission**
+Authorization
+User(teacher) clicks on user(student) submission and is marked ‘in review’
+User(teacher) marks submission as ‘complete’ or ‘incomplete’
 
 —————————————
 
