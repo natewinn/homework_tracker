@@ -1,2 +1,3 @@
 class SubmissionsController < ApplicationController
+	
 end

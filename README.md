@@ -41,13 +41,17 @@
 ## Associations
 
 **Cohort**
-* has_many :users, through: :enrollment 
+* has_many :users, through: :enrollments 
+
+**Enrollment**
+* belongs_to :cohort
+* belongs_to :user
 
 **User**
 * had_many :comments
 * has_many :assignments
 * has_many :submissions
-* has_many :cohorts through :enrollment
+* has_many :cohorts through :enrollments
 
 **Assignment**
 * belongs_to :cohort

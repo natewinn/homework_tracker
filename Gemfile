@@ -11,6 +11,8 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'devise'
 gem 'carrierwave'
+gem 'cancan'
+gem 'rolify'
 
 group :doc do
 	gem 'sdoc'
