@@ -91,9 +91,8 @@
 * User(teacher) clicks on user(student) submission and is marked ‘in review’
 * User(teacher) marks submission as ‘complete’ or ‘incomplete’
 
-—————————————
+## Requirements
 
-## Requirements:
 * User authentication
 	* Normal User (students)
 	* Admin User (instructors)
