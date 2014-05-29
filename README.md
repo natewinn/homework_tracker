@@ -8,7 +8,7 @@
 * start_date :date
 * end_date :date
 
-**User**(two_user_types)
+**User**(student + teacher)
 * first_name :string
 * last_name :sting
 * email_address :string
@@ -18,13 +18,13 @@
 * cohort_id :integer
 * user_id :integer
 
-**Assignment**(admin)
+**Assignment**(teacher)
 * name :string
 * description :text
 * due_date :date
 * cohort_id :integer
 
-**Submission**(user)
+**Submission**(student)
 * github :string
 * heroku :string
 * user_id (normal) :integer
@@ -78,7 +78,7 @@
 * Input form
 * Authorization
 
-** User(student + teacher) can add comments**
+**User(student + teacher) can add comments**
 * User(teacher) comments on submission
 	* Text form below submission
 	* Authorization (teacher and student(who submitted))
@@ -102,10 +102,10 @@
 2. Reviewing
 3. Complete
 4. Incomplete
-	* checkout the workflow or state machine gems to help control homework "states" 
+	* Checkout the workflow or state machine gems to help control homework "states" 
 	* Homework assignments should be able to have many links
 	* For example: I should be able to add a heroku link, a github link, and whatever else I want to add
-	* check out: http://railscasts.com/episodes/403-dynamic-forms
+	* Check out: http://railscasts.com/episodes/403-dynamic-forms
 	* HW assignment should have a Description attribute
 * Comment Stream
 * Basic styling is fine for this, but you'll definitely want to go back later to make it look nicer because it'll be a great addition to your portfolio :)
