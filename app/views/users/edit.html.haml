@@ -1,0 +1,17 @@
+/ = Update User Record = /
+.row
+  .large-6.columns.large-centered
+    %h2 Update user record.
+    = form_for @user do |user|
+      = user.text_field :first_name
+      = user.text_field :last_name
+      = user.text_field :email
+      / = user.select :location_id, Location.all.collect {|d| [ d.location_name, d.id ] }, hide_label: true
+      %br
+      = user.submit "Update Record", class: "button small secondary"
+    
+    / = Delete Button = /
+    = button_to "Delete User", user_path(:id), method: "delete", class: "button small secondary"
+      
+    / = Back Button = /
+    = link_to "Return to List", users_path, class: "button small secondary"

@@ -11,7 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'devise'
 gem 'carrierwave'
-gem 'cancan'
+gem 'cancancan'
 gem 'rolify'
 
 group :doc do
@@ -27,8 +27,6 @@ end
 
 group :development do
   gem 'debugger'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'meta_request'
   gem 'spring'
 end
