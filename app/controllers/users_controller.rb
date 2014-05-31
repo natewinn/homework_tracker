@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.all
+		@cohort = current_user.cohorts
+		@current_cohort = @cohort.last
+		@location = @current_cohort.location
 	end
 
 	def new
@@ -10,7 +13,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = current_user
+		@cohort = current_user.cohorts
+		@current_cohort = @cohort.last
+		@location = @current_cohort.location
+		@assignments = @current_cohort.assignments
 	end
 
 	def create

@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root to: "users#index"
 
-  resources :users
   resources :assignments
   resources :cohorts
   resources :comments
+  resources :locations
   resources :subissions
+  resources :users
 
 end

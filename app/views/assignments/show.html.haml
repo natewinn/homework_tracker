@@ -1,0 +1,17 @@
+= render '/layouts/navbar'
+
+.row
+	- @assignments.each do |assignment|
+  .large-9.push-3.columns
+    %h3
+      assignment.name
+    %p
+    	assignment.description
+  .large-3.pull-9.columns
+    %ul.side-nav
+      %li= link_to "#{@assignment.name}", assignment_path(assignment), :method => :get, class: "button small secondary"
+    %p
+      %img{src: "http://placehold.it/320x240&text=Ad"}/
+
+
+      %p= "Location: #{@location.city}"

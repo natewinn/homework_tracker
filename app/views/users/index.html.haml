@@ -2,21 +2,24 @@
 
 / = View All User Records = /
 .top-section
-  .row
-    %table
-      %thead
-        %tr
-          %th First Name
-          %th Last Name
-          %th Email
-          %th Cohort
-          %th Student Profile
-      %tbody
-        - @users.each do |user|
+  .row 
+    %h3
+      Student Records
+      %table
+        %thead
           %tr
-            %td= user.first_name
-            %td= user.last_name
-            %td= user.email
-            %td **placeholder**
-            %td= link_to "View Profile", user_path(user), :method => :get, class: "button small secondary"
-            
+            %th First Name
+            %th Last Name
+            %th Email
+            %th Cohort
+            %th Location
+            %th Student Profile
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.first_name
+              %td= user.last_name
+              %td= user.email
+              %td= "#{@current_cohort.name}"
+              %td= "#{@location.city}"
+              %td= link_to "View Profile", user_path(user), :method => :get, class: "button small secondary"

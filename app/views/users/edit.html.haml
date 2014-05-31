@@ -12,9 +12,5 @@
         / = user.select :location_id, Location.all.collect {|d| [ d.location_name, d.id ] }, hide_label: true
         %br
         = user.submit "Update Record", class: "button small secondary"
-      
-      / = Delete Button = /
-      = button_to "Delete User", user_path(:id), method: "delete", class: "button small secondary"
-        
-      / = Back Button = /
-      = link_to "Return to List", users_path, class: "button small secondary"
+        = link_to "Change password", edit_user_registration_path, class: "button small secondary"      
+        = link_to "Back to List", users_path, class: "button small secondary"

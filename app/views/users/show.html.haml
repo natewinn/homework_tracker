@@ -1,2 +1,37 @@
-/ = Wildfire Record = /
-%p= "First name: #{@user.first_name}"
+= render '/layouts/navbar'
+
+/ = User Profile = /
+.top-section
+  .row
+    .large-4.columns
+      %img.th{src: @user.avatar}
+    .large-8.columns
+      %h3= "#{@user.first_name}'s profile"
+      %p= "First name: #{@user.first_name}"
+      %p= "Last name: #{@user.last_name}"
+      %p= "Email: #{@user.email}"
+      %p= "Cohort: #{@current_cohort.name}"
+      %p= "Location: #{@location.city}"
+      %p= link_to "Edit Profile", edit_user_path, :method => :get, class: "button small secondary"
+
+/ = View User Submissions = /
+.top-section
+  .row 
+    %h3= "#{@user.first_name}'s homework"
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Due Date
+          %th Submitted
+          %th Status
+          %th View
+      %tbody
+        - @assignments.each do |a|
+          %tr
+            %td= a.name
+            %td= a.due_date
+            - a.submissions.each do |b|
+              %td= b.created_at
+              %td= b.status
+            / %td= link_to "Take a Look", assignment_path(assignment), :method => :get, class: "button small secondary"
