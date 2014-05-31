@@ -3,61 +3,21 @@
 / = View Locations = /
 .top-section
   .row
-    %h3= "#{@location.city}'s roster"
-    - @cohorts.each do |cohort|
-      = cohort.name
-
-
-%ul.tabs{"data-tab" => ""}
-  %li.tab-title.active
-    %a{href: "#panel2-1"} Tab 1
-  %li.tab-title
-    %a{href: "#panel2-2"} Tab 2
-  %li.tab-title
-    %a{href: "#panel2-3"} Tab 3
-  %li.tab-title
-    %a{href: "#panel2-4"} Tab 4
-.tabs-content
-  #panel2-1.content.active
-    %p First panel content goes here...
-  #panel2-2.content
-    %p Second panel content goes here...
-  #panel2-3.content
-    %p Third panel content goes here...
-  #panel2-4.content
-    %p Fourth panel content goes here...
-
-
-
-
-/     %h3
-/       Roster 
-/       %table
-/         %thead
-/           %tr
-/             %th Location
-/             %th Student Roster
-/         %tbody
-/           - @locations.each do |location|
-/             %tr
-/               %td= location.city
-/               %td= link_to "View Roster", location_path(location), :method => :get, class: "button small secondary"
-
-/ %ul.tabs{"data-tab" => ""}
-/   %li.tab-title.active
-/     %a{href: "#panel2-1"} Tab 1
-/   %li.tab-title
-/     %a{href: "#panel2-2"} Tab 2
-/   %li.tab-title
-/     %a{href: "#panel2-3"} Tab 3
-/   %li.tab-title
-/     %a{href: "#panel2-4"} Tab 4
-/ .tabs-content
-/   #panel2-1.content.active
-/     %p First panel content goes here...
-/   #panel2-2.content
-/     %p Second panel content goes here...
-/   #panel2-3.content
-/     %p Third panel content goes here...
-/   #panel2-4.content
-/     %p Fourth panel content goes here...
+    %h3= "#{@location.city}'s Roster"
+    - @cohorts.each do |a|
+      %h3= a.name
+      %br
+        %table
+          %thead
+            %tr
+              %th First Name
+              %th Last Name
+              %th Email
+              %th Student Profile
+          %tbody
+            - a.users.each do |b|
+              %tr
+                %td= b.first_name
+                %td= b.last_name
+                %td= b.email
+                %td= link_to "View Profile", user_path(:id), :method => :get, class: "button small secondary"
