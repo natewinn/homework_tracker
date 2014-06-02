@@ -1,0 +1,31 @@
+/ - Page Title -/
+- content_for(:title, "Locations")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a.current{ href: user_path(:id) }= "Iron Yard Locations"
+
+/ = Add New Location = /
+.top-section
+  .row
+    .large-4.columns
+      = form_for @new_location do |location|
+        = location.text_field :city, autofocus: true, placeholder: 'Add a new location'
+        = location.submit 'Add location', class: "button small secondary"
+
+/ = View Locations = /
+.row
+  %h3
+    Iron Yard Locations
+    %table
+      %thead
+        %tr
+          %th Location
+          %th Student Roster
+      %tbody
+        - @locations.each do |location|
+          %tr
+            %td= location.city
+            %td= link_to "View Roster", location_path(location), :method => :get, class: "button small secondary"

@@ -1,0 +1,30 @@
+/ - Page Title -/
+- content_for(:title, "#{@location.city}")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a.current{ href: user_path(:id) }= "#{@location.city}'s Roster"
+
+/ = View Locations = /
+.top-section
+  .row
+    %h3= "#{@location.city}'s Roster"
+    - @cohorts.each do |a|
+      %h3= a.name
+      %br
+        %table
+          %thead
+            %tr
+              %th First Name
+              %th Last Name
+              %th Email
+              %th Student Profile
+          %tbody
+            - a.users.each do |b|
+              %tr
+                %td= b.first_name
+                %td= b.last_name
+                %td= b.email
+                %td= link_to "View Profile", user_path(:id), :method => :get, class: "button small secondary"

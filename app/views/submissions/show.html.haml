@@ -1,0 +1,25 @@
+/ - Page Title -/
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a{ href: users_path } Nate's Submissions
+
+/ = Submission = /
+.top-section
+  .row
+    .large-12.columns
+      Assignment: 
+      = link_to "#{@assignment.name}", assignment_path(@assignment.id), :method => :get
+      %p
+      Submitted by: 
+      = link_to "#{@user.first_name} #{@user.last_name}", user_path(@user.id), :method => :get
+      %p
+      View assignments:
+      %p
+      %a{href: "#{@submission.github}", target: "_blank"} GitHub
+      %p
+      %a{href: "#{@submission.heroku}", target: "_blank"} Heroku
+      %p
+      %p= "Status: #{@submission.status}"
+      %p= link_to "Edit", edit_submission_path(@submission.id), class: "button small secondary"

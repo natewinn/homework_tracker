@@ -10,10 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_foundation
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
 
+h1, h2, h3, h4, h5, h6 { font-family: Open Sans; font-weight: 300 }
+body { font-family: Open Sans }
+html { font-family: Open Sans }
+p { font-family: Open Sans }
+a { font-family: Open Sans }
 
 .top-section { margin: 30px 0 22px; padding: 0 0 22px 0 } 

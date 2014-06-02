@@ -1,0 +1,31 @@
+/ - Page Title -/
+- content_for(:title, "Assignments")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a.current{ href: user_path(:id) }= "Iron Yard Assignments"
+
+/ = All Iron Yard Assignments = /
+.top-section
+  .row
+    .large-12.columns
+      -@locations.each do |a|
+        %h2= a.city
+        - a.cohorts.each do |b|
+          %h3= b.name
+          %table
+            %thead
+              %tr
+                %th Assignment
+                %th Due Date
+                %th Number Sumbitted
+                %th View Assignment        
+            %tbody
+              - b.assignments.each do |c|
+                %tr
+                  %td= c.name
+                  %td= c.due_date
+                  %td **Sumbitted**
+                  %td= link_to "View", assignment_path(c.id), :method => :get, class: "button small secondary"

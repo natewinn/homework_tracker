@@ -13,6 +13,7 @@ gem 'devise'
 gem 'carrierwave'
 gem 'cancancan'
 gem 'rolify'
+gem 'foundation-rails'
 
 group :doc do
 	gem 'sdoc'

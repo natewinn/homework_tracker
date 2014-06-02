@@ -1,19 +1,33 @@
-= render '/layouts/navbar'
+/ - Page Title -/
+- content_for(:title, 'Home')
 
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+
+/ = Total Iron Yard Roster = /
 .top-section
-	.row
-		%table
-			%thead
-				%tr
-					%th First Name
-					%th Last Name
-					%th Email
-					%th Cohort
-					%th Update Info
-			%tbody
-				- @users.each do |user|
-					%tr
-						%td= user.first_name
-						%td= user.last_name
-						%td= user.email
-						%td= link_to "Update", edit_user_path(user.id), :method => :get, class: "button small secondary"
+  .row
+    .large-12.columns
+      - @locations.each do |a|
+        %h2= a.city
+        - a.cohorts.each do |b|
+          %h3= b.name
+          %table
+            %thead
+              %tr
+                %th First Name
+                %th Last Name
+                %th Email
+                %th Mobile Number
+                %th View Profile
+            %tbody
+              - b.users.each do |c|
+                %tr
+                  %td= c.first_name
+                  %td= c.last_name
+                  %td= c.email
+                  %td= c.mobile_number
+                  %td= link_to "View Profile", user_path(c.id), :method => :get, class: "button small secondary"
+                  %br

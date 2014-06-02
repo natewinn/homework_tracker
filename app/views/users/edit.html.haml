@@ -1,17 +1,24 @@
-/ = Update User Record = /
-.row
-  .large-6.columns.large-centered
-    %h2 Update user record.
-    = form_for @user do |user|
-      = user.text_field :first_name
-      = user.text_field :last_name
-      = user.text_field :email
-      / = user.select :location_id, Location.all.collect {|d| [ d.location_name, d.id ] }, hide_label: true
-      %br
-      = user.submit "Update Record", class: "button small secondary"
-    
-    / = Delete Button = /
-    = button_to "Delete User", user_path(:id), method: "delete", class: "button small secondary"
-      
-    / = Back Button = /
-    = link_to "Return to List", users_path, class: "button small secondary"
+/ - Page Title -/
+- content_for(:title, "Edit #{@user.first_name} #{@user.last_name}")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a{ href: user_path(:id) }= "#{@user.first_name} #{@user.last_name}'s Profile"
+  %a.current{ href: edit_user_path(:id) }= "Edit"
+
+/ = Update User Profile = /
+.top-section
+  .row
+    .large-6.columns.large-centered
+      %h2 Update user record.
+      = form_for @user do |user|
+        = user.text_field :first_name
+        = user.text_field :last_name
+        = user.text_field :email
+        / = user.select :location_id, Location.all.collect {|d| [ d.location_name, d.id ] }, hide_label: true
+        %br
+        = user.submit "Update Record", class: "button small secondary"
+        = link_to "Change password", edit_user_registration_path, class: "button small secondary"      
+        = link_to "Back to List", users_path, class: "button small secondary"

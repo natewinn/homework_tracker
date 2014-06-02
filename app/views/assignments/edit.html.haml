@@ -1,0 +1,20 @@
+/ - Page Title -/
+- content_for(:title, "Assignments")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+
+/ = Update Assignment = /
+.top-section
+  .row
+    .large-6.columns.large-centered
+      %h2= "Update #{@assignment.name}"
+      = form_for @assignment do |assignment|
+        = assignment.text_field :name
+        = assignment.text_area :description
+        = assignment.text_field :due_date
+        %br
+        = assignment.submit "Update Assignment", class: "button small secondary"      
+        = link_to "Back Assignment", :back, class: "button small secondary"
