@@ -1,4 +1,12 @@
-= render '/layouts/navbar'
+/ - Page Title -/
+- content_for(:title, "Edit #{@user.first_name} #{@user.last_name}")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a{ href: user_path(:id) }= "#{@user.first_name} #{@user.last_name}'s Profile"
+  %a.current{ href: edit_user_path(:id) }= "Edit"
 
 / = Update User Profile = /
 .top-section

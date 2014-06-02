@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def set_current_user
-  	Authorization.current_user = current_user
+    Authorization.current_user = current_user
   end
 
   protected

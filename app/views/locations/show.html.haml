@@ -1,4 +1,11 @@
-= render '/layouts/navbar'
+/ - Page Title -/
+- content_for(:title, "#{@location.city}")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a.current{ href: user_path(:id) }= "#{@location.city}'s Roster"
 
 / = View Locations = /
 .top-section

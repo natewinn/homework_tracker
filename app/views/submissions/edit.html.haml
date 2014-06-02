@@ -1,0 +1,21 @@
+/ - Page Title -/
+- content_for(:title, "Edit #{@assignment.name}")
+
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a{ href: submission_path(:id) }= "#{@assignment.name}"
+  %a.current{ href: edit_submission_path(:id) }= "Edit"
+
+/ = Update Submission = /
+.top-section
+  .row
+    .large-6.columns.large-centered
+      %h2= "Update #{@assignment.name}"
+      = form_for @submission do |submission|
+        = submission.text_field :github
+        = submission.text_field :heroku
+        %br
+        = submission.submit "Update Submission", class: "button small secondary"      
+        = link_to "Back Assignment", :back, class: "button small secondary"

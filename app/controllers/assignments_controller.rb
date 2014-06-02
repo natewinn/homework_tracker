@@ -1,43 +1,36 @@
 class AssignmentsController < ApplicationController
 
-	before_filter :authenticate_user!, :load
-
-	def load
-		@locations = Location.all
-		@user = current_user
-		@cohort = current_user.cohorts
-		@current_cohort = @cohort.last
-		# @location = @current_cohort.location
-		@assignments = @current_cohort.assignments
-	end
+	before_filter :authenticate_user!
 
 	def index
-	end
-
-	def new
-		@assignments = Assignment.new
+		@locations = Location.all
 	end
 
 	def show
-	
-	end
-
-	def create
+		# @new_comment = @assignment.comments.build		
+		@user = current_user
+		@assignment = Assignment.find(params[:id])
+		@cohort = @assignment.cohort
+		@location = @cohort.location
 	end
 
 	def edit
+		@assignment = Assignment.find(params[:id])	
 	end
 
 	def update
-	end
-
-	def destroy
+		@assignment = Assignment.find(params[:id])
+		if @assignment.update_attributes(assignment_params)
+			redirect_to assignment_path
+		else
+			redirect_to edit_assignment_path
+		end
 	end
 
 	private
 
 	def assignment_params
-		params.require(:user).permit(:name, :description, :due_date)
+		params.require(:assignment).permit(:name, :description, :due_date)
 	end
 	
 end

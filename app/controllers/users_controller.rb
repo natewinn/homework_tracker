@@ -2,10 +2,7 @@ class UsersController < ApplicationController
 		before_filter :authenticate_user!
 
 	def index
-		@users = User.all
-		@cohort = current_user.cohorts
-		@current_cohort = @cohort.last
-		@location = @current_cohort.location
+		@locations = Location.all
 	end
 
 	def new
@@ -13,11 +10,12 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = current_user
-		@cohort = current_user.cohorts
+		@user = User.find(params[:id])
+		@cohort = @user.cohorts
 		@current_cohort = @cohort.last
 		@location = @current_cohort.location
 		@assignments = @current_cohort.assignments
+		@submission = @user.submissions 
 	end
 
 	def create
@@ -53,6 +51,7 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:first_name, :last_name, :email, :avatar)
 	end
+
+	
 	
 end
-         

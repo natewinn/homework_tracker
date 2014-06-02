@@ -1,20 +1,29 @@
-= render '/layouts/navbar'
+/ - Page Title -/
+- content_for(:title, "#{@user.first_name} #{@user.last_name}")
 
-/ = User Profile = /
+/ - Breadcrumb Nav -/
+%nav.breadcrumbs
+  .medium-6.small-3.columns
+  %a{ href: users_path } Home
+  %a.current{ href: user_path(:id) }= "#{@user.first_name} #{@user.last_name}'s Profile"
+
+/ = User's Profile = /
 .top-section
   .row
     .large-4.columns
       %img.th{src: @user.avatar}
     .large-8.columns
-      %h3= "#{@user.first_name}'s profile"
-      %p= "First name: #{@user.first_name}"
-      %p= "Last name: #{@user.last_name}"
+      %h3= "#{@user.first_name}'s Profile"
+      %p= "Name: #{@user.first_name} #{@user.last_name}"
       %p= "Email: #{@user.email}"
+      / %p= "Cell: #{@user.mobile_number}"
+      / %p= "Twitter: #{@user.twitter}"
+      / %p= "Blog: #{@user.blog}"
       %p= "Cohort: #{@current_cohort.name}"
       %p= "Location: #{@location.city}"
       %p= link_to "Edit Profile", edit_user_path, :method => :get, class: "button small secondary"
 
-/ = View User Submissions = /
+/ = User's Submissions = /
 .top-section
   .row 
     %h3= "#{@user.first_name}'s homework"
@@ -29,9 +38,9 @@
       %tbody
         - @assignments.each do |a|
           %tr
-            %td= a.name
-            %td= a.due_date
+            %td= link_to "#{a.name}", assignment_path(a.id), :method => :get
+            %td= format_date(a.due_date)
             - a.submissions.each do |b|
-              %td= b.created_at
+              %td= format_date_time(b.created_at)
               %td= b.status
-            / %td= link_to "Take a Look", assignment_path(assignment), :method => :get, class: "button small secondary"
+              %td= link_to "View Submission", submission_path(b.id), :method => :get, class: "button small secondary"

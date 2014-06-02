@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :cohorts
   resources :comments
   resources :locations
-  resources :subissions
+  resources :submissions
   resources :users
 
 end
