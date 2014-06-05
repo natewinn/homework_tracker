@@ -7,10 +7,12 @@ class SubmissionsController < ApplicationController
 	end
 
 	def show
-		# @new_comment = @submission.comments.build
 		@submission = Submission.find(params[:id])		
 		@user = @submission.user
-		@assignment = @submission.assignment		
+		@assignment = @submission.assignment	
+		@current_user = current_user
+		@comments = @submission.comments.build
+		@comment_list = @submission.comments
 	end
 
 	def create

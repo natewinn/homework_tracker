@@ -7,11 +7,12 @@ class AssignmentsController < ApplicationController
 	end
 
 	def show
-		# @new_comment = @assignment.comments.build		
-		@user = current_user
 		@assignment = Assignment.find(params[:id])
+		@comment_list = @assignment.comments
 		@cohort = @assignment.cohort
 		@location = @cohort.location
+		@comments = @assignment.comments.build		
+		@current_user = current_user
 	end
 
 	def edit
@@ -30,7 +31,7 @@ class AssignmentsController < ApplicationController
 	private
 
 	def assignment_params
-		params.require(:assignment).permit(:name, :description, :due_date)
+		params.require(:assignment).permit!
 	end
 	
 end
