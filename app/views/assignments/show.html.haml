@@ -3,47 +3,49 @@
 
 / - Breadcrumb Nav -/
 %nav.breadcrumbs
-  .medium-6.small-3.columns
+  .medium-6.columns
   %a{ href: users_path } Home
   %a.current{ href: user_path(:id) }= "Iron Yard Locations"
   
-.top-section
-  .row
-    %h3= "#{@location.city} - #{@cohort.name} Assignments"  
-    .large-12.columns
-      %h5 Assignment: 
-      = "#{@assignment.name}"
-      %p
-      %h5 Description: 
-      %p= "#{@assignment.description}"
-      %h5 Due date:
-      = format_date(@assignment.due_date)
-      %p
-      %p= link_to "Edit", edit_assignment_path(@assignment.id), class: "button small secondary"
+/ - Assignment -/
+.row
+  %h3= "#{@location.city} - #{@cohort.name} Assignments"  
+  .large-12.columns
+    %h5 Assignment: 
+    = "#{@assignment.name}"
+    %p
+    %h5 Description: 
+    %p= "#{@assignment.description}"
+    %h5 Due date:
+    = format_date(@assignment.due_date)
+    %p
+    %p= link_to "Edit Assignment", edit_assignment_path(@assignment.id), class: "button small secondary"
   
-  / .row
-  /   /- Display Comments -/
-  /   -@comments.each do |f|
-  /     %blockquote
-  /       = f.content
-  /       %cite
-  /         = f.user
-  /         = format_date_time(f.created_at)
+  /- Display Comments -/
+.row
+  .medium-6.columns
+    -@comment_list.each do |a|
+      %blockquote
+        = a.content
+        %cite
+          = format_date_time(a.created_at)
+          %p
+          = a.user.id
+          = a.commentable
+          = User.where("id = ?", a.user_id)
 
-  /   / - Add Comment Form -/
-  /   %fieldset
-  /     %legend Add a Comment
-  /     =form_for @new_comment do |f|
-  /       =f.hidden_field :commentable_id, value: @assignment.id
-  /       =f.hidden_field :commentable_type, value: "Assignment"
-  /       .small-6.columns
-  /         = f.label "Name:"
-  /         = f.text_field :user
-  /       .small-6.columns
-  /         = f.label "Date:"
-  /         = f.date_field :created_at
-  /       .small-12.columns
-  /         = f.label "Your Comment:"
-  /         = f.text_field :content
-  /         %br
-  /         =f.submit "Post Comment", class: "default button"
+
+  / - Add Comment Form -/
+.row
+  .medium-8.columns.medium-centered
+    %fieldset
+      %legend Add a Comment
+      = form_for @comments do |a|
+        = a.hidden_field :commentable_id, value: @assignment.id
+        = a.hidden_field :commentable_type, value: "Assignment"
+        = a.hidden_field :user_id, value: @current_user.id
+        .small-12.columns
+          = a.label "Your Comment:"
+          = a.text_field :content
+          %br
+          = a.submit "Post Comment", class: "button small secondary"

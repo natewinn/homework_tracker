@@ -23,3 +23,29 @@
       %p
       %p= "Status: #{@submission.status}"
       %p= link_to "Edit", edit_submission_path(@submission.id), class: "button small secondary"
+
+/- Display Comments -/
+.row
+  .medium-6.columns
+    -@comment_list.each do |a|
+      %blockquote
+        = a.content
+        %cite
+          = format_date_time(a.created_at)
+          = a.user do |b|
+            = b.first_name        
+
+/ - Add Comment Form -/
+.row
+  .medium-8.columns.medium-centered
+    %fieldset
+      %legend Add a Comment
+      = form_for @comments do |a|
+        = a.hidden_field :commentable_id, value: @submission.id
+        = a.hidden_field :commentable_type, value: "Submission"
+        = a.hidden_field :user_id, value: @user.id
+        .small-12.columns
+          = a.label "Your Comment:"
+          = a.text_field :content
+          %br
+          = a.submit "Post Comment", class: "button small secondary"
